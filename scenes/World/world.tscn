@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
 [ext_resource type="PackedScene" uid="uid://b3dc17l4oy8b7" path="res://scenes/blood_bag/blood_bag.tscn" id="3_ylytv"]
 [ext_resource type="PackedScene" uid="uid://twt36rn68jbs" path="res://scenes/store/tap/tap.tscn" id="4_htuk3"]
-[ext_resource type="PackedScene" uid="uid://27dd7my357oy" path="res://scenes/blood_bag/blood_box.tscn" id="5_qvm0k"]
-[ext_resource type="PackedScene" uid="uid://d15m7o1g7v5yg" path="res://scenes/store/tap/polarizer.tscn" id="6_ymxg3"]
+[ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
+[ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="6_8jbly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
 size = Vector2(1232, 84)
@@ -42,8 +42,12 @@ blood_type = "b"
 position = Vector2(-484, -58)
 blood_type = "o"
 
-[node name="BloodBox" parent="." instance=ExtResource("5_qvm0k")]
-position = Vector2(478, 137)
+[node name="Pump1" parent="." instance=ExtResource("5_yenkt")]
+position = Vector2(76, -60)
+script = ExtResource("6_8jbly")
+blood_type = "iron"
 
-[node name="Polarizer" parent="." instance=ExtResource("6_ymxg3")]
-position = Vector2(258, 111)
+[node name="Pump2" parent="." instance=ExtResource("5_yenkt")]
+position = Vector2(200, -60)
+script = ExtResource("6_8jbly")
+blood_type = "insulin"
