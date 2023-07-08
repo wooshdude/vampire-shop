@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://byw7j4lv5a4tg"]
+
+[ext_resource type="Script" path="res://scenes/store/tap/shaker.gd" id="1_85jj8"]
+[ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_mic4r"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_u85xa"]
+b = Vector2(0, 29)
+
+[node name="Shaker" type="Node2D"]
+script = ExtResource("1_85jj8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.289063, 0.375)
+texture = ExtResource("2_mic4r")
+
+[node name="Spout" type="Node2D" parent="."]
+position = Vector2(0, 88)
+
+[node name="Area2D" type="Area2D" parent="." groups=["Shaker"]]
+position = Vector2(0, 41)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -34)
+shape = SubResource("SegmentShape2D_u85xa")
