@@ -64,6 +64,8 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			selected = true
+			get_node("TapCollider/CollisionShape2D").disabled = true
+			
 			print('grab')
 			state = DRAG
 			
@@ -74,6 +76,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			timer.start()
 		else:
 			selected = false
+			get_node("TapCollider/CollisionShape2D").disabled = false
 			var mouse_position = get_global_mouse_position()
 			
 			var distance = global_position.distance_to(mouse_position)
