@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d01k0m04yhs33"]
+
+[ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
+[ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
+
+[node name="World" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1000
+limit_right = 1000
+editor_draw_limits = true
+script = ExtResource("1_y506n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 266)
+scale = Vector2(9.5625, 1)
+texture = ExtResource("2_le6bg")
