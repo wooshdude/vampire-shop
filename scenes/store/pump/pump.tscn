@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://uxw2u83fp72l"]
+[gd_scene load_steps=2 format=3 uid="uid://uxw2u83fp72l"]
 
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="1_uvemb"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_yqapg"]
-b = Vector2(0, 25)
 
 [node name="pump" type="Node2D"]
 
@@ -20,12 +17,3 @@ collide_with_bodies = false
 
 [node name="Spout" type="Node2D" parent="."]
 position = Vector2(0, 88)
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2, 201)
-scale = Vector2(29.8, 3.81735)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("SegmentShape2D_yqapg")

@@ -8,12 +8,15 @@ extends RigidBody2D
 @onready var receive_timer = $ReceiveTimer
 @onready var label = $Label
 @onready var polarization = $Polarization
+@onready var ingredient = $Ingredient
 @onready var sprite = $Sprite2D
 
 var selected = false
 var tap
 var receiving_blood
 var receiving_polarization
+var receiving_ingredient
+var colliding
 
 enum {
 	IDLE,
@@ -54,6 +57,10 @@ func _process(delta):
 	
 	label.text = order.recipe['blood-type']['type']
 	polarization.text = order.recipe['blood-type']['polarization']
+	var ingredientsText = ""
+	for ingredient in order.recipe['ingredients']:
+		ingredientsText+= ingredient+"\n"
+	ingredient.text=ingredientsText
 
 
 func follow_mouse():
@@ -83,6 +90,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 
 func _on_tap_collider_area_entered(area):
+	colliding=true
 	if area.is_in_group("BloodBag"): return
 	tap = area
 	print(tap.get_parent().in_use)
@@ -103,12 +111,15 @@ func _on_tap_collider_area_entered(area):
 					receiving_polarization = "-"
 				"-":
 					receiving_polarization = "+"
+		if area.is_in_group("Pump"):
+			receiving_ingredient = area.get_parent().blood_type
 		
 		tap.get_parent().in_use = true
 		state = IDLE
 		mouse_area.monitoring = false
 		drag_timer.start()
 		receive_timer.start()
+		
 	else:
 		tap = null
 
@@ -130,3 +141,16 @@ func _on_receive_timer_timeout():
 			order.polarize(receiving_polarization)
 	state = DRAG
 	selected = false
+
+
+
+func _on_button_pressed():
+	if(colliding==true):
+		order.add_ingredient(receiving_ingredient)
+	state=DRAG
+	selected=false
+
+
+func _on_area_2d_area_exited(area):
+	colliding=false
+	print("exit")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=11 format=3 uid="uid://d01k0m04yhs33"]
 
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
@@ -7,9 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
 [ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="6_8jbly"]
 [ext_resource type="PackedScene" uid="uid://bfefrpregy1gt" path="res://scenes/World/pause.tscn" id="7_ifwix"]
+[ext_resource type="Script" path="res://scenes/World/Button.gd" id="7_qdi16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
 size = Vector2(1232, 84)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_riqsj"]
+b = Vector2(0, 25)
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -49,10 +53,43 @@ position = Vector2(76, -60)
 script = ExtResource("6_8jbly")
 blood_type = "iron"
 
+[node name="Button" type="Button" parent="Pump1"]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 14.0
+scale = Vector2(5.16, 5.16)
+script = ExtResource("7_qdi16")
+
+[node name="Area2D" type="Area2D" parent="Pump1" groups=["Pump"]]
+position = Vector2(0, 215)
+scale = Vector2(29.8, 3.81735)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump1/Area2D"]
+shape = SubResource("SegmentShape2D_riqsj")
+
 [node name="Pump2" parent="." instance=ExtResource("5_yenkt")]
 position = Vector2(200, -60)
 script = ExtResource("6_8jbly")
 blood_type = "insulin"
+
+[node name="Button" type="Button" parent="Pump2"]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 14.0
+scale = Vector2(5.16, 5.16)
+
+[node name="Area2D" type="Area2D" parent="Pump2" groups=["Pump"]]
+position = Vector2(-2, 217)
+scale = Vector2(29.8, 3.81735)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump2/Area2D"]
+shape = SubResource("SegmentShape2D_riqsj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -63,3 +100,7 @@ offset_left = -3.0
 offset_top = 2.0
 offset_right = 1152.0
 offset_bottom = 654.0
+
+[connection signal="pressed" from="Pump1/Button" to="blood_bag" method="_on_button_pressed"]
+[connection signal="area_exited" from="Pump1/Area2D" to="blood_bag" method="_on_area_2d_area_exited"]
+[connection signal="pressed" from="Pump2/Button" to="blood_bag" method="_on_button_pressed"]
