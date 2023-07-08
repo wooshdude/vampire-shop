@@ -1,12 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg01lw5kqeubd"]
+[gd_scene load_steps=8 format=3 uid="uid://bg01lw5kqeubd"]
 
 [ext_resource type="Script" path="res://scenes/customer/Customer_generator.gd" id="1_8ne6a"]
 [ext_resource type="Script" path="res://scenes/customer/Timer.gd" id="2_6knv5"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="Texture2D" uid="uid://cpu5jppsia8oa" path="res://assets/customer/body/Base1.PNG" id="3_uh7hv"]
+[ext_resource type="Texture2D" uid="uid://lekjpbunqu6c" path="res://assets/customer/eyes/Eyes1.PNG" id="4_0etfq"]
+[ext_resource type="Texture2D" uid="uid://c2amd41xm22v0" path="res://assets/customer/hair/Hair1.PNG" id="5_psal4"]
+[ext_resource type="Texture2D" uid="uid://bny5ey4d6vxsh" path="res://assets/customer/mouth/Happy.PNG" id="6_cup0x"]
+[ext_resource type="Texture2D" uid="uid://bya4flx4g4n41" path="res://assets/customer/nose/Nose1.PNG" id="8_ctadl"]
+>>>>>>> Stashed changes
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ne6a")
 
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("2_6knv5")
+
+[node name="Customer" type="Node2D" parent="."]
+position = Vector2(535, 266)
+scale = Vector2(0.440001, 0.440001)
+metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="Customer"]
+texture = ExtResource("3_uh7hv")
+
+[node name="Eyes" type="Sprite2D" parent="Customer"]
+texture = ExtResource("4_0etfq")
+
+[node name="Hair" type="Sprite2D" parent="Customer"]
+texture = ExtResource("5_psal4")
+
+[node name="Mouth" type="Sprite2D" parent="Customer"]
+texture = ExtResource("6_cup0x")
+
+[node name="Nose" type="Sprite2D" parent="Customer"]
+texture = ExtResource("8_ctadl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -10,16 +10,29 @@ var orderNum = 0
 var bloodType = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 var names = ["Jessie", "Avery", "Alex", "John", "Rowan", "Morgan", "Casey"]
 var foodPreferences = ["Likes bacon", "Likes salads", "Likes coffee", "Dislikes waiting", "Dislikes cats"]
-var hobbyPreferences = ["walking.", "bird watching.", "sleeping."]
+var hobbyPreferences = ["walking.", "bird watching.", "sleeping.", "making music"]
 var vampFoodPreferences = ["Likes blood.", "Likes the moon.", "Likes coffins.", "Dislikes garlic.", "Dislikes medeival weapons."]
-var vampHobbyPreferences = ["bat watching.", "flying.", "playing the violin."]
+var vampHobbyPreferences = ["bat watching.", "flying.", "playing the violin.", "brooding in the darkness."]
+var vampire
+
+var body: Sprite2D
+var eyes: Sprite2D
+var hair: Sprite2D
+var mouth: Sprite2D
+var nose: Sprite2D
 
 func _ready():
 	orderGen() #temp
+	body = get_node("Customer/Body")
+	eyes = get_node("Customer/Eyes")
+	hair = get_node("Customer/Hair")
+	mouth = get_node("Customer/Mouth")
+	nose = get_node("Customer/Nose")
+	spriteGen()
 
 func orderGen()-> void: #generates next customer whenever called
 	orderName.append(names.pick_random())
-	var vampire = randi_range(0,5)
+	vampire = randi_range(0,5)
 	orderDifficulty.append(randi_range(1, 2))
 	if (orderNum>0 and (orderNum-1)%5==0): 
 		orderDifficulty[orderNum] = 3
@@ -35,4 +48,19 @@ func orderGen()-> void: #generates next customer whenever called
 	#print(preferencesList[orderNum])
 	#print(orderDifficulty[orderNum])
 	#print(orderVampire[orderNum])
-	orderNum+=1
+	self.orderNum+=1
+
+func spriteGen()->void:
+	var ranMouth = randi_range(0,3)
+	var mouthArr = ["assets/customer/mouth/Angry.PNG", "assets/customer/mouth/Happy.PNG"]
+	var vampMouthArr = ["assets/customer/mouth/AngryBlood.PNG", "assets/customer/mouth/AngryVamp.PNG", "assets/customer/mouth/HappyBlood.PNG", "assets/customer/mouth/HappyVamp.PNG"]
+	if vampire==3 and randi()%2==0: #50% chance to get vamp skin if vamp
+		body.texture = load("assets/customer/body/VampBase.PNG")
+		mouth.texture = load(vampMouthArr[ranMouth])
+		print("vamp")
+	else:
+		body.texture = load("assets/customer/body/Base"+str(randi_range(1,3))+".PNG")
+		mouth.texture = load(mouthArr[ranMouth%2])
+		print("not vamp")
+	eyes.texture = load("assets/customer/eyes/Eyes"+str(randi_range(1,5))+".PNG")
+	hair.texture = load("assets/customer/hair/Hair"+str(randi_range(1,4))+".PNG")
