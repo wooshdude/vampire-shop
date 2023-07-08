@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=9 format=3 uid="uid://d01k0m04yhs33"]
 
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://twt36rn68jbs" path="res://scenes/store/tap/tap.tscn" id="4_htuk3"]
 [ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
 [ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="6_8jbly"]
+[ext_resource type="PackedScene" uid="uid://bfefrpregy1gt" path="res://scenes/World/pause.tscn" id="7_ifwix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
 size = Vector2(1232, 84)
 
 [node name="World" type="Node2D"]
+process_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -1000
@@ -51,3 +53,13 @@ blood_type = "iron"
 position = Vector2(200, -60)
 script = ExtResource("6_8jbly")
 blood_type = "insulin"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("7_ifwix")]
+visible = false
+offset_left = -3.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 654.0
