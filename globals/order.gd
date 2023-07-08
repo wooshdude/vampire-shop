@@ -49,7 +49,7 @@ func add_blood(type: String):
 		print('is type a or b')
 		if not type == recipe['blood-type']['type']:
 					recipe['blood-type']['type'] = 'ab'
-	else:
+	elif not recipe['blood-type']['type'] in ['a', 'b', 'ab']:
 		recipe['blood-type']['type'] = type
 
 

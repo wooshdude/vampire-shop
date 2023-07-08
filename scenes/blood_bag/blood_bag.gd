@@ -7,10 +7,13 @@ extends RigidBody2D
 @onready var drag_timer = $DragTimer
 @onready var receive_timer = $ReceiveTimer
 @onready var label = $Label
+@onready var polarization = $Polarization
+@onready var sprite = $Sprite2D
 
 var selected = false
-var tap_position
+var tap
 var receiving_blood
+var receiving_polarization
 
 enum {
 	IDLE,
@@ -18,7 +21,7 @@ enum {
 }
 var state = DRAG
 
-@onready var order = Order.new()
+var order = Order.new()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +31,9 @@ func _process(delta):
 	match state:
 		DRAG:
 			freeze = false
-			
+			if not tap == null:
+				tap.get_parent().in_use = false
+				tap = null
 			if selected:
 				follow_mouse()
 				sleeping = true
@@ -40,11 +45,15 @@ func _process(delta):
 				gravity_scale = 1
 			
 		IDLE:
-			global_position = lerp(global_position, tap_position, 0.1)
-			rotation_degrees = lerp(rotation_degrees, 0.0, 0.05)
-			freeze = true
+			if tap:
+				global_position = lerp(global_position, tap.global_position, 0.1)
+				rotation_degrees = lerp(rotation_degrees, 0.0, 0.05)
+				freeze = true
+			else:
+				state = DRAG
 	
 	label.text = order.recipe['blood-type']['type']
+	polarization.text = order.recipe['blood-type']['polarization']
 
 
 func follow_mouse():
@@ -70,18 +79,38 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			var distance = global_position.distance_to(mouse_position)
 			var direction = global_position.direction_to(mouse_position)
 			
-			apply_central_impulse(direction * clamp(distance,0,30) * 25)
+			apply_central_impulse(direction * clamp(distance,0,30) * 35)
 
 
 func _on_tap_collider_area_entered(area):
-	print('colliding')
-	print('receiving blood type ' + area.get_parent().blood_type)
-	receiving_blood = area.get_parent().blood_type
-	tap_position = area.global_position
-	state = IDLE
-	mouse_area.monitoring = false
-	drag_timer.start()
-	receive_timer.start()
+	if area.is_in_group("BloodBag"): return
+	tap = area
+	print(tap.get_parent().in_use)
+	if tap.get_parent().in_use == false:
+		
+		if area.is_in_group("BloodTap"):
+			print('colliding')
+			print('receiving blood type ' + area.get_parent().blood_type)
+			receiving_blood = area.get_parent().blood_type
+		
+		if area.is_in_group("Polarizer"):
+			print('polarizing')
+			if order.recipe['blood-type']['type'] == "": return
+			match order.recipe['blood-type']['polarization']:
+				"":
+					receiving_polarization = "+"
+				"+":
+					receiving_polarization = "-"
+				"-":
+					receiving_polarization = "+"
+		
+		tap.get_parent().in_use = true
+		state = IDLE
+		mouse_area.monitoring = false
+		drag_timer.start()
+		receive_timer.start()
+	else:
+		tap = null
 
 
 func _on_timer_timeout():
@@ -93,4 +122,11 @@ func _on_drag_timer_timeout():
 
 
 func _on_receive_timer_timeout():
-	order.add_blood(receiving_blood)
+	if tap:
+		if tap.is_in_group("BloodTap"):
+			order.add_blood(receiving_blood)
+			sprite.frame = 1
+		if tap.is_in_group("Polarizer"):
+			order.polarize(receiving_polarization)
+	state = DRAG
+	selected = false

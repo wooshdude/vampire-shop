@@ -1,43 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3dc17l4oy8b7"]
+[gd_scene load_steps=9 format=3 uid="uid://b3dc17l4oy8b7"]
 
-[ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="1_58rwy"]
 [ext_resource type="Script" path="res://scenes/blood_bag/blood_bag.gd" id="1_typ0w"]
+[ext_resource type="Texture2D" uid="uid://bjy8w3on8lg6d" path="res://assets/art/empty_bag.png" id="2_sa838"]
 [ext_resource type="FontFile" uid="uid://c51fwr61whyld" path="res://assets/fonts/Milky Mania.ttf" id="3_5qq44"]
+[ext_resource type="Texture2D" uid="uid://bax5l3rcfqfrl" path="res://assets/art/full_bag.png" id="3_r4y3t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npmpq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sa838")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r4y3t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixn8g"]
-size = Vector2(116, 116)
+size = Vector2(76.3175, 84.3509)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpwyc"]
-size = Vector2(116.485, 116.485)
+size = Vector2(76.3175, 84.3509)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6pa1j"]
 font = ExtResource("3_5qq44")
-font_size = 32
-font_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+font_size = 200
+font_color = Color(0.65098, 0.65098, 0.65098, 1)
 
 [node name="blood_bag" type="RigidBody2D" groups=["BloodBag"]]
-scale = Vector2(0.49792, 0.49792)
-collision_layer = 0
 script = ExtResource("1_typ0w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_58rwy")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_npmpq")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ixn8g")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
+position = Vector2(-0.356817, -0.501428)
 rotation = 1.5708
-polygon = PackedVector2Array(58.2423, 42.1754, 58.2423, -42.1755, 54.2256, -54.2256, 42.1754, -58.2423, 14.0585, -58.2423, -12.0501, -50.2089, -48.2005, -26.1086, -56.2339, 2.45806e-06, -50.2089, 22.0919, -14.0585, 46.1922, 16.0668, 56.2339, 44.1838, 58.2423, 54.2256, 52.2172)
+scale = Vector2(0.696693, 0.696693)
+polygon = PackedVector2Array(62.779, 23.533, 62.7788, -23.5335, 51.0121, -47.0667, 39.2455, -52.95, 14.0585, -58.2423, -12.0501, -50.2089, -48.2005, -26.1086, -56.2339, 2.45806e-06, -50.2089, 22.0919, -14.0585, 46.1922, 16.0668, 56.2339, 39.2458, 52.9497, 51.0125, 47.0663)
 
 [node name="TapCollider" type="Area2D" parent="." groups=["BloodBag"]]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TapCollider"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kpwyc")
 
 [node name="DragTimer" type="Timer" parent="."]
@@ -50,10 +67,22 @@ one_shot = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = -24.1003
-offset_top = -18.0752
-offset_right = 23.8997
-offset_bottom = 18.9248
+offset_top = -24.1003
+offset_right = 225.9
+offset_bottom = 292.9
+scale = Vector2(0.2, 0.2)
 text = "ab"
+label_settings = SubResource("LabelSettings_6pa1j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polarization" type="Label" parent="."]
+offset_left = -5.0
+offset_top = -41.0
+offset_right = 245.0
+offset_bottom = 276.0
+scale = Vector2(0.2, 0.2)
+text = "+"
 label_settings = SubResource("LabelSettings_6pa1j")
 horizontal_alignment = 1
 vertical_alignment = 1

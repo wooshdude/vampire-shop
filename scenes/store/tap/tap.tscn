@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="1_ndi4p"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_u85xa"]
-b = Vector2(0, 25)
+b = Vector2(0, 29)
 
 [node name="Tap" type="Node2D"]
 script = ExtResource("1_ndi4p")
@@ -13,20 +13,13 @@ script = ExtResource("1_ndi4p")
 scale = Vector2(0.328125, 1)
 texture = ExtResource("1_h2cwl")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, 62)
-enabled = false
-target_position = Vector2(0, 26)
-collide_with_areas = true
-collide_with_bodies = false
-
 [node name="Spout" type="Node2D" parent="."]
 position = Vector2(0, 88)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["BloodTap"]]
 position = Vector2(0, 63)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("SegmentShape2D_u85xa")

@@ -1,7 +1,7 @@
 extends Camera2D
 
 var spd = 4
-var radius_required_to_move = 400
+var radius_required_to_move = 500
 
 func _process(delta):
 	var mouse_position = get_global_mouse_position()
