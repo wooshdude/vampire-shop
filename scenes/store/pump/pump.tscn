@@ -21,11 +21,11 @@ collide_with_bodies = false
 [node name="Spout" type="Node2D" parent="."]
 position = Vector2(0, 88)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Insulin"]]
 position = Vector2(-2, 201)
 scale = Vector2(29.8, 3.81735)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("SegmentShape2D_yqapg")

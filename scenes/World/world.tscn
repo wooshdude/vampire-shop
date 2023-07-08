@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=11 format=3 uid="uid://d01k0m04yhs33"]
 
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
 [ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="6_8jbly"]
 [ext_resource type="PackedScene" uid="uid://bfefrpregy1gt" path="res://scenes/World/pause.tscn" id="7_ifwix"]
+[ext_resource type="PackedScene" uid="uid://d15m7o1g7v5yg" path="res://scenes/store/tap/polarizer.tscn" id="8_iwqy5"]
+[ext_resource type="PackedScene" uid="uid://27dd7my357oy" path="res://scenes/blood_bag/blood_box.tscn" id="9_f8q2s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
-size = Vector2(1232, 84)
+size = Vector2(2090, 84)
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -21,14 +23,14 @@ editor_draw_limits = true
 script = ExtResource("1_y506n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 266)
-scale = Vector2(9.5625, 1)
+position = Vector2(49.9999, 266)
+scale = Vector2(16.7031, 1)
 texture = ExtResource("2_le6bg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(5, 242)
+position = Vector2(73, 242)
 shape = SubResource("RectangleShape2D_twu1v")
 
 [node name="blood_bag" parent="." instance=ExtResource("3_ylytv")]
@@ -45,14 +47,9 @@ position = Vector2(-484, -58)
 blood_type = "o"
 
 [node name="Pump1" parent="." instance=ExtResource("5_yenkt")]
-position = Vector2(76, -60)
+position = Vector2(-120, -71)
 script = ExtResource("6_8jbly")
 blood_type = "iron"
-
-[node name="Pump2" parent="." instance=ExtResource("5_yenkt")]
-position = Vector2(200, -60)
-script = ExtResource("6_8jbly")
-blood_type = "insulin"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -63,3 +60,9 @@ offset_left = -3.0
 offset_top = 2.0
 offset_right = 1152.0
 offset_bottom = 654.0
+
+[node name="Polarizer" parent="." instance=ExtResource("8_iwqy5")]
+position = Vector2(469, 112)
+
+[node name="BloodBox" parent="." instance=ExtResource("9_f8q2s")]
+position = Vector2(929, 133)

@@ -103,6 +103,8 @@ func _on_tap_collider_area_entered(area):
 					receiving_polarization = "-"
 				"-":
 					receiving_polarization = "+"
+		if area.is_in_group("Insulin"):
+			print('receiving insulin')
 		
 		tap.get_parent().in_use = true
 		state = IDLE
@@ -128,5 +130,8 @@ func _on_receive_timer_timeout():
 			sprite.frame = 1
 		if tap.is_in_group("Polarizer"):
 			order.polarize(receiving_polarization)
+		if tap.is_in_group("Insulin"):
+			order.add_ingredient("insulin")
+	print(order.recipe)
 	state = DRAG
 	selected = false
