@@ -1,13 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3dc17l4oy8b7"]
+[gd_scene load_steps=4 format=3 uid="uid://b3dc17l4oy8b7"]
 
-[ext_resource type="Texture2D" uid="uid://c5h7mpb2eryus" path="res://icon.svg" id="1_58rwy"]
+[ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="1_58rwy"]
 [ext_resource type="Script" path="res://scenes/blood_bag/blood_bag.gd" id="1_typ0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixn8g"]
 size = Vector2(116, 116)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_28ceh"]
-radius = 64.0
 
 [node name="blood_bag" type="RigidBody2D"]
 scale = Vector2(0.49792, 0.49792)
@@ -22,7 +19,9 @@ texture = ExtResource("1_58rwy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ixn8g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_28ceh")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(58.2423, 42.1754, 58.2423, -42.1755, 54.2256, -54.2256, 42.1754, -58.2423, 14.0585, -58.2423, -12.0501, -50.2089, -48.2005, -26.1086, -56.2339, 2.45806e-06, -50.2089, 22.0919, -14.0585, 46.1922, 16.0668, 56.2339, 44.1838, 58.2423, 54.2256, 52.2172)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

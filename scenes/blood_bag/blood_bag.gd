@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@onready var collision = $CollisionShape2D
+@onready var collision = $CollisionPolygon2D
 
 var selected = false
 
@@ -18,6 +18,7 @@ func _process(delta):
 
 func follow_mouse():
 	position = get_global_mouse_position()
+	
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
@@ -26,3 +27,9 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			selected = true
 		else:
 			selected = false
+			var mouse_position = get_global_mouse_position()
+			
+			var distance = global_position.distance_to(mouse_position)
+			var direction = global_position.direction_to(mouse_position)
+			
+			apply_central_impulse(direction * clamp(distance,0,30) * 25)
