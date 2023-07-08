@@ -58,5 +58,6 @@ func polarize(type: String):
 
 
 func add_ingredient(ingredient: String):
+	print(ingredient)
 	if not ingredient in recipe['ingredients']:
 		recipe['ingredients'].append(ingredient)
