@@ -14,6 +14,7 @@ var selected = false
 var tap
 var receiving_blood
 var receiving_polarization
+var receiving_ingredient
 
 enum {
 	IDLE,
@@ -34,6 +35,7 @@ func _process(delta):
 			if not tap == null:
 				tap.get_parent().in_use = false
 				tap = null
+				
 			if selected:
 				follow_mouse()
 				sleeping = true
@@ -90,11 +92,17 @@ func _on_tap_collider_area_entered(area):
 	tap = area
 	print(tap.get_parent().in_use)
 	if tap.get_parent().in_use == false:
-		
 		if area.is_in_group("BloodTap"):
 			print('colliding')
-			print('receiving blood type ' + area.get_parent().blood_type)
-			receiving_blood = area.get_parent().blood_type
+			match area.get_parent().ingredient:
+				0:
+					receiving_blood = "a"
+				1:
+					receiving_blood = "b"
+				2:
+					receiving_blood = 'o'
+					
+			print('receiving blood type ' + receiving_blood)
 		
 		if area.is_in_group("Polarizer"):
 			print('polarizing')
@@ -108,6 +116,13 @@ func _on_tap_collider_area_entered(area):
 					receiving_polarization = "+"
 		if area.is_in_group("Insulin"):
 			print('receiving insulin')
+		
+		if area.is_in_group("Shaker"):
+			match area.get_parent().ingredient:
+				0:
+					receiving_ingredient = "iron"
+				1:
+					receiving_ingredient = "calcium"
 		
 		tap.get_parent().in_use = true
 		state = IDLE
@@ -135,6 +150,8 @@ func _on_receive_timer_timeout():
 			order.polarize(receiving_polarization)
 		if tap.is_in_group("Insulin"):
 			order.add_ingredient("insulin")
+		if tap.is_in_group("Shaker"):
+			order.add_ingredient(receiving_ingredient)
 	print(order.recipe)
 	state = DRAG
 	selected = false
