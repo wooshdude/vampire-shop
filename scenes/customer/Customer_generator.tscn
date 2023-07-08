@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scenes/customer/Customer_generator.gd" id="1_8ne6a"]
 [ext_resource type="Script" path="res://scenes/customer/Timer.gd" id="2_6knv5"]
 
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8ne6a")
 
