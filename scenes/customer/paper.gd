@@ -11,6 +11,8 @@ extends Node2D
 var selected = false
 var patient_file
 
+var distance = Vector2.ZERO
+
 func _process(_delta):
 	#print($AnimatedSprite2D/Area2D.get_overlapping_areas())
 	
@@ -24,7 +26,7 @@ func _process(_delta):
 
 
 func follow_mouse():
-	global_position = get_global_mouse_position()
+	global_position = get_global_mouse_position() - distance
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
@@ -32,6 +34,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		#print(event)
 		if event.pressed:
 			selected = true
+			distance = get_global_mouse_position() - global_position
 		else:
 			selected = false
 
