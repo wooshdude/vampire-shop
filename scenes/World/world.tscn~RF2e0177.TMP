@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=14 format=3 uid="uid://d01k0m04yhs33"]
 
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
@@ -60,9 +60,11 @@ position = Vector2(-329, -178)
 
 [node name="Tap2" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-417, -177)
+ingredient = 1
 
 [node name="Tap3" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-504, -178)
+ingredient = 2
 
 [node name="Pump1" parent="." instance=ExtResource("5_yenkt")]
 position = Vector2(-772, 44)
@@ -82,6 +84,13 @@ shape = SubResource("SegmentShape2D_riqsj")
 position = Vector2(200, -60)
 script = ExtResource("6_8jbly")
 blood_type = "insulin"
+
+[node name="Button" type="Button" parent="Pump2"]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 14.0
+scale = Vector2(5.16, 5.16)
 
 [node name="Area2D" type="Area2D" parent="Pump2" groups=["Pump"]]
 position = Vector2(-2, 217)
@@ -120,3 +129,5 @@ position = Vector2(1196, -128)
 
 [node name="BloodDeposit" parent="." instance=ExtResource("12_le0qi")]
 position = Vector2(754, 28)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
