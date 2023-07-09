@@ -1,0 +1,71 @@
+~ start
+
+Jessie: Hey, new guy!
+Jessie: I'm here to train you on your first day.
+Jessie: Welcome to your first shift!
+Jessie: Let's go over the basics, shall we?
+Jessie: Since you're a vampire I'm sure you won't have much trouble picking it up.
+Jessie: Here, take a look at this.
+
+set TutorialVars.emit_signal("show_paper")
+
+Jessie: This is a patient file.
+Jessie: We use it to request orders for new blood.
+Jessie: Seems like this person needs AB- blood.
+Jessie: Why don't you get that for them?
+Jessie: Drag an empty bag to the A tap.
+Jessie: When you finish, place the bag on that metal tray to the right so I can check it out.
+
+set TutorialVars.a_tap = true
+
+=> END
+
+~ a_tap
+
+Jessie: Awesome! You're half way there. You also need to add B, so go ahead and drag the bag there next.
+Jessie: Put the bag back on the tray again once you finish.
+
+set TutorialVars.b_tap = true
+set TutorialVars.a_tap = false
+
+=> END
+
+~ b_tap
+
+Jessie: Wow! You're a natural at this! I expect nothing less from a vampire!
+Jessie: Alright, now to add some supplements to the blood. Looks like this patient needs extra Iron, Calcium, and Insulin.
+Jessie: Here's a test for you...
+Jessie: Add all those supplements on your own, and return the bag to the tray so I can grade you.
+
+set TutorialVars.b_tap = false
+set TutorialVars.a_tap = false
+set TutorialVars.shaker = true
+set TutorialVars.pump = true
+
+=> END
+
+~ shakers
+
+Jessie: It looks great! What perfect ratios!
+Jessie: One final step. We need to polarize the blood.
+Jessie: This patient needs Negative blood, so you'll need to run the bag through the polarizer twice.
+Jessie: Hop to it! Remeber to put the bag in the tray once you finish.
+
+set TutorialVars.shaker = false
+set TutorialVars.pump = false
+set TutorialVars.polarizer = true
+
+=> END
+
+~ polarizer
+
+Jessie: And that's it! Feel confident?
+Jessie: Alright it look's like your shift is about to start.
+Jessie: Just a couple things to keep in mind.
+Jessie: Sometimes you might encounter another vampire looking for a quick fix. If you see any suspicious patient files, throw them in the Biohazard Bin.
+Jessie: And make sure you prioritize emergencies! Those patients need that blood stat!
+Jessie: Alright, good luck!
+
+set get_tree().change_scene_to_file("res://scenes/Menus/menu.tscn")
+
+=> END

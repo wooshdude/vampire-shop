@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7cbprq8a0124"]
+[gd_scene load_steps=5 format=3 uid="uid://b7cbprq8a0124"]
 
 [ext_resource type="Script" path="res://scenes/Menus/Menu.gd" id="1_kqu6k"]
+[ext_resource type="PackedScene" uid="uid://jxfrbpi1fjcq" path="res://scenes/vamp_guy.tscn" id="2_f0eiu"]
+[ext_resource type="Texture2D" uid="uid://bt3icw0r6m452" path="res://assets/art/logo.png" id="3_3l30y"]
+[ext_resource type="AudioStream" uid="uid://cq8pu0bmw1b7v" path="res://assets/music/Lookin Dry_2b.wav" id="4_pi2b4"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -10,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kqu6k")
+
+[node name="VampGuy" parent="." instance=ExtResource("2_f0eiu")]
+position = Vector2(577, 324)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -29,11 +35,17 @@ grow_vertical = 2
 layout_mode = 2
 text = "Start"
 
+[node name="Guide Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Guide
+"
+
 [node name="Quit Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -46,5 +58,19 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 92
 text = "Crimson Night Shift"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 325)
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(411, 245)
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("3_3l30y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pi2b4")
+autoplay = true
+
 [connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Guide Button" to="." method="_on_guide_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

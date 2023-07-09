@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsj58hagel86c"
+path="res://.godot/imported/Lofi Beats to Chill and Drink Blood to_2b.wav-2ae0f649b9aeb04dbaa8eb989942560a.sample"
+
+[deps]
+
+source_file="res://assets/music/Lofi Beats to Chill and Drink Blood to_2b.wav"
+dest_files=["res://.godot/imported/Lofi Beats to Chill and Drink Blood to_2b.wav-2ae0f649b9aeb04dbaa8eb989942560a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

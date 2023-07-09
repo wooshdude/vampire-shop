@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cp0bnt5v83r24"
+path="res://.godot/imported/Running Out of Time_2c.wav-a37868a9e0942d2c9345dc07b33d74aa.sample"
+
+[deps]
+
+source_file="res://assets/music/Running Out of Time_2c.wav"
+dest_files=["res://.godot/imported/Running Out of Time_2c.wav-a37868a9e0942d2c9345dc07b33d74aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

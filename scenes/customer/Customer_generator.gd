@@ -9,10 +9,11 @@ extends Node2D
 #var orderNum = 0 
 var bloodType = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 var names = ["Jessie", "Avery", "Alex", "John", "Rowan", "Morgan", "Casey"]
-var foodPreferences = ["Likes bacon", "Likes salads", "Likes coffee", "Dislikes waiting", "Dislikes cats"]
-var hobbyPreferences = ["walking.", "bird watching.", "sleeping.", "making music"]
-var vampFoodPreferences = ["Likes blood.", "Likes the moon.", "Likes coffins.", "Dislikes garlic.", "Dislikes medeival weapons."]
-var vampHobbyPreferences = ["bat watching.", "flying.", "playing the violin.", "brooding in the darkness."]
+var likes = ["Bacon", "Salads", "Coffee", "Walking", "Bird watching", "Sleeping", "Making music"]
+var dislikes = ["Waiting", "Cats"]
+var vamp_likes = ["Blood.", "The moon.", "Coffins", "Bat watching.", "Flying.", "Playing the violin", "Brooding in the darkness"]
+var vamp_dislikes = ["Garlic", "Medeival weapons"]
+
 var vampire
 
 var body: Sprite2D
@@ -58,24 +59,27 @@ func orderGen()-> void: #generates next customer whenever called
 	var orderDifficulty = randi_range(1, 2)
 	var orderNum = len(GlobalOrders.orders)
 	var orderVampire
-	var preferencesList = []
+	var likeList = []
+	var dislikeList = []
 	
 	if (orderNum>0 and (orderNum-1)%5==0): 
 		orderDifficulty = 3
 
 	if(vampire==3):
 		orderVampire = true
-		preferencesList = [vampFoodPreferences.pick_random(), vampHobbyPreferences.pick_random()]
+		likeList = [vamp_likes.pop_at(vamp_likes.find(vamp_likes.pick_random())), vamp_likes.pop_at(vamp_likes.find(vamp_likes.pick_random()))]
+		dislikeList = [vamp_dislikes.pop_at(vamp_dislikes.find(vamp_dislikes.pick_random())), vamp_dislikes.pop_at(vamp_dislikes.find(vamp_dislikes.pick_random()))]
 	else:
 		orderVampire = false
-		preferencesList = [foodPreferences.pick_random(), hobbyPreferences.pick_random()]
+		likeList = [likes.pop_at(likes.find(likes.pick_random())), likes.pop_at(likes.find(likes.pick_random()))]
+		dislikeList = [dislikes.pop_at(dislikes.find(dislikes.pick_random())), dislikes.pop_at(dislikes.find(dislikes.pick_random()))]
 	#print(orderName[orderNum])
 	#print(orderBloodType[orderNum])
 	#print(preferencesList[orderNum])
 	#print(orderDifficulty[orderNum])
 	#print(orderVampire[orderNum])
 	
-	new_order.new_patient(orderName, preferencesList, [], orderVampire, orderDifficulty)
+	new_order.new_patient(orderName, likeList, dislikeList, orderVampire, orderDifficulty)
 	print(new_order.patient)
 	GlobalOrders.orders.append(new_order.patient)
 

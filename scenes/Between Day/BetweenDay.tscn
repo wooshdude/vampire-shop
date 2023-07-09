@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://20jjl8d6q5qt"]
+[gd_scene load_steps=8 format=3 uid="uid://20jjl8d6q5qt"]
 
 [ext_resource type="Script" path="res://scenes/Between Day/BetweenDay.gd" id="1_6s5t3"]
+[ext_resource type="FontFile" uid="uid://c51fwr61whyld" path="res://assets/fonts/Milky Mania.ttf" id="2_f2xrg"]
+[ext_resource type="Texture2D" uid="uid://bql11hsasdtpc" path="res://assets/art/between_day.png" id="2_tk8aw"]
+[ext_resource type="AudioStream" uid="uid://bj727gy6eo4wy" path="res://assets/music/You_Win_1b.wav" id="4_udqyu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n45qu"]
+font = ExtResource("2_f2xrg")
+font_size = 126
+
+[sub_resource type="LabelSettings" id="LabelSettings_5b7v5"]
+font = ExtResource("2_f2xrg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ug1tp"]
+font = ExtResource("2_f2xrg")
 
 [node name="BetweenDay" type="Control"]
 layout_mode = 3
@@ -10,6 +23,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6s5t3")
+
+[node name="BetweenDay" type="Sprite2D" parent="."]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+position = Vector2(577, 326)
+texture = ExtResource("2_tk8aw")
 
 [node name="DaysCompleted" type="Label" parent="."]
 layout_mode = 1
@@ -26,6 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 85
 text = "Day Complete"
+label_settings = SubResource("LabelSettings_n45qu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -45,6 +64,7 @@ alignment = 1
 [node name="Pay" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Pay"
+label_settings = SubResource("LabelSettings_5b7v5")
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -52,6 +72,7 @@ layout_mode = 2
 [node name="Citations" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Citations"
+label_settings = SubResource("LabelSettings_ug1tp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -74,6 +95,10 @@ text = " Continue "
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_udqyu")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

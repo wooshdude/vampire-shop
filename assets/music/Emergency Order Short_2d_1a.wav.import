@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://p2tqiamwavpa"
+path="res://.godot/imported/Emergency Order Short_2d_1a.wav-6d0a8c3a223a48aa8ee463ba67e92210.sample"
+
+[deps]
+
+source_file="res://assets/music/Emergency Order Short_2d_1a.wav"
+dest_files=["res://.godot/imported/Emergency Order Short_2d_1a.wav-6d0a8c3a223a48aa8ee463ba67e92210.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

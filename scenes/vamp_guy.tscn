@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=3 uid="uid://jxfrbpi1fjcq"]
+
+[ext_resource type="Texture2D" uid="uid://cl00n6oaynvxb" path="res://assets/art/guy/IMG_0789.png" id="1_vhehr"]
+[ext_resource type="Texture2D" uid="uid://cy8jrr074iip5" path="res://assets/art/guy/IMG_0795.png" id="2_1eu7g"]
+[ext_resource type="Texture2D" uid="uid://dp3p5id742k4i" path="res://assets/art/guy/IMG_0797.png" id="3_a1hjg"]
+[ext_resource type="Texture2D" uid="uid://g15dlfcdblp8" path="res://assets/art/guy/IMG_0798.png" id="4_b51dp"]
+[ext_resource type="Texture2D" uid="uid://bvui7rl20bfbn" path="res://assets/art/guy/IMG_0799.png" id="5_7yb8v"]
+[ext_resource type="Texture2D" uid="uid://cgdv7o8580qbd" path="res://assets/art/guy/IMG_0803.png" id="6_76dp1"]
+[ext_resource type="Texture2D" uid="uid://brxju8eaps3nv" path="res://assets/art/guy/IMG_0804.png" id="7_o8tvv"]
+[ext_resource type="Texture2D" uid="uid://cpx3134nijpos" path="res://assets/art/guy/IMG_0805.png" id="8_3yaxo"]
+[ext_resource type="Texture2D" uid="uid://b23vs52i5roe1" path="res://assets/art/guy/IMG_0806.png" id="9_vdxpj"]
+[ext_resource type="Texture2D" uid="uid://bc3myycs27jjc" path="res://assets/art/guy/IMG_0791.png" id="10_nsdxg"]
+[ext_resource type="Texture2D" uid="uid://cupm4bfdgyyc8" path="res://assets/art/guy/IMG_0792.png" id="11_4yjaj"]
+[ext_resource type="Script" path="res://scenes/AnimationPlayer.gd" id="12_byg8m"]
+[ext_resource type="Texture2D" uid="uid://wfcjw7ubg6ju" path="res://assets/art/guy/IMG_0796.png" id="12_ip2wf"]
+
+[sub_resource type="Animation" id="Animation_1p3u7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Img0791:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cvu8y"]
+resource_name = "WIPE"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Img0791:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.301942, 0.151844]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibo8i"]
+_data = {
+"RESET": SubResource("Animation_1p3u7"),
+"WIPE": SubResource("Animation_cvu8y")
+}
+
+[node name="VampGuy" type="Node2D"]
+
+[node name="Img0789" type="Sprite2D" parent="."]
+texture = ExtResource("1_vhehr")
+
+[node name="Img0804" type="Sprite2D" parent="."]
+texture = ExtResource("7_o8tvv")
+
+[node name="Img0803" type="Sprite2D" parent="."]
+texture = ExtResource("6_76dp1")
+
+[node name="Img0805" type="Sprite2D" parent="."]
+texture = ExtResource("8_3yaxo")
+
+[node name="Img0795" type="Sprite2D" parent="."]
+texture = ExtResource("2_1eu7g")
+
+[node name="Img0797" type="Sprite2D" parent="."]
+texture = ExtResource("3_a1hjg")
+
+[node name="Img0798" type="Sprite2D" parent="."]
+texture = ExtResource("4_b51dp")
+
+[node name="Img0799" type="Sprite2D" parent="."]
+texture = ExtResource("5_7yb8v")
+
+[node name="Img0791" type="Sprite2D" parent="."]
+position = Vector2(224, 99)
+texture = ExtResource("10_nsdxg")
+offset = Vector2(-214.615, -103.16)
+
+[node name="Img0792" type="Sprite2D" parent="Img0791"]
+texture = ExtResource("11_4yjaj")
+offset = Vector2(-223.95, -94.51)
+
+[node name="Img0806" type="Sprite2D" parent="."]
+texture = ExtResource("9_vdxpj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ibo8i")
+}
+script = ExtResource("12_byg8m")
+
+[node name="Img0796" type="Sprite2D" parent="."]
+texture = ExtResource("12_ip2wf")

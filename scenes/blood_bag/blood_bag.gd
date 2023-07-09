@@ -6,10 +6,14 @@ extends RigidBody2D
 @onready var timer = $TapTimer
 @onready var drag_timer = $DragTimer
 @onready var receive_timer = $ReceiveTimer
-@onready var label = $Label
-@onready var polarization = $Polarization
-@onready var ingredient = $Ingredient
+@onready var label = $Sprite2D/Label
+@onready var polarization = $Sprite2D/Polarization
+@onready var ingredient = $Sprite2D/Ingredient
 @onready var sprite = $Sprite2D
+@onready var anim = $AnimationPlayer
+@onready var iron_icon = $Sprite2D/Iron
+@onready var calcium_icon = $Sprite2D/Calcium
+@onready var insulin_icon = $Sprite2D/Insulin
 
 var selected = false
 var tap
@@ -25,6 +29,12 @@ enum {
 var state = DRAG
 
 var order = Order.new()
+
+
+func _ready():
+	iron_icon.hide()
+	calcium_icon.hide()
+	insulin_icon.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,11 +65,15 @@ func _process(delta):
 			else:
 				state = DRAG
 
-	label.text = order.recipe['blood-type']['type']
-	polarization.text = order.recipe['blood-type']['polarization']
+	self.get_node("Sprite2D/Label").text = order.recipe['blood-type']['type']
+	self.get_node("Sprite2D/Polarization").text = order.recipe['blood-type']['polarization']
 	var ingredientsText = ""
-	for ingredient in order.recipe['ingredients']:
-		ingredientsText+= ingredient+"\n"
+	if "iron" in order.recipe['ingredients']:
+		iron_icon.show()
+	if "calcium" in order.recipe['ingredients']:
+		calcium_icon.show()
+	if "insulin" in order.recipe['ingredients']:
+		insulin_icon.show()
 	ingredient.text=ingredientsText
 
 
@@ -91,6 +105,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 			apply_central_impulse(direction * clamp(distance,0,30) * 35)
 
+
 func _on_tap_collider_area_exited(area):
 	if not tap == null:
 		tap.get_parent().in_use = false
@@ -101,6 +116,9 @@ func _on_tap_collider_area_entered(area):
 	colliding=true
 	if area.is_in_group("BloodBag"): return
 	tap = area
+	if tap.is_in_group("BiohazardBin"):
+		print('delete')
+		anim.play("DELETE")
 	print(tap.get_parent().in_use)
 	if tap.get_parent().in_use == false:
 
@@ -179,3 +197,8 @@ func _on_button_pressed():
 func _on_area_2d_area_exited(area):
 	colliding=false
 	print("exit")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "DELETE":
+		self.queue_free()

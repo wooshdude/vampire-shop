@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3dc17l4oy8b7"]
+[gd_scene load_steps=13 format=3 uid="uid://b3dc17l4oy8b7"]
 
 [ext_resource type="Script" path="res://scenes/blood_bag/blood_bag.gd" id="1_typ0w"]
 [ext_resource type="Texture2D" uid="uid://bjy8w3on8lg6d" path="res://assets/art/empty_bag.png" id="2_sa838"]
 [ext_resource type="FontFile" uid="uid://c51fwr61whyld" path="res://assets/fonts/Milky Mania.ttf" id="3_5qq44"]
 [ext_resource type="Texture2D" uid="uid://bax5l3rcfqfrl" path="res://assets/art/full_bag.png" id="3_r4y3t"]
+[ext_resource type="Animation" uid="uid://7deuy65ojijq" path="res://assets/animations/DELETE.res" id="5_jd7t0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_npmpq"]
 animations = [{
@@ -19,28 +20,158 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixn8g"]
-size = Vector2(76.3175, 84.3509)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpwyc"]
-size = Vector2(76.3175, 84.3509)
-
 [sub_resource type="LabelSettings" id="LabelSettings_6pa1j"]
 font = ExtResource("3_5qq44")
-font_size = 200
-font_color = Color(0.65098, 0.65098, 0.65098, 1)
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_5leyj"]
+font = ExtResource("3_5qq44")
+font_size = 32
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvpkm"]
+radius = 41.0122
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5rby"]
+radius = 24.0
+
+[sub_resource type="Animation" id="Animation_vxa7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4hwp"]
+_data = {
+"DELETE": ExtResource("5_jd7t0"),
+"RESET": SubResource("Animation_vxa7n")
+}
 
 [node name="blood_bag" type="RigidBody2D" groups=["BloodBag"]]
+rotation = 6.28319
 script = ExtResource("1_typ0w")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_npmpq")
 
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -624.992
+offset_top = -706.002
+offset_right = -374.992
+offset_bottom = -389.002
+scale = Vector2(5, 5)
+text = "ab"
+label_settings = SubResource("LabelSettings_6pa1j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polarization" type="Label" parent="Sprite2D"]
+offset_left = -433.991
+offset_top = -874.998
+offset_right = -183.991
+offset_bottom = -557.998
+scale = Vector2(5, 5)
+text = "+"
+label_settings = SubResource("LabelSettings_6pa1j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ingredient" type="Label" parent="Sprite2D"]
+visible = false
+offset_left = -440.0
+offset_top = -40.0
+offset_right = 260.0
+offset_bottom = 410.0
+text = "iron"
+label_settings = SubResource("LabelSettings_6pa1j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+
+[node name="Iron" type="Label" parent="Sprite2D"]
+offset_left = -194.999
+offset_top = 252.5
+offset_right = -154.999
+offset_bottom = 292.5
+scale = Vector2(3, 3)
+text = "fe"
+label_settings = SubResource("LabelSettings_5leyj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Calcium" type="Label" parent="Sprite2D"]
+offset_left = -58.9642
+offset_top = 252.5
+offset_right = -18.9642
+offset_bottom = 292.5
+scale = Vector2(3, 3)
+text = "ca"
+label_settings = SubResource("LabelSettings_5leyj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Insulin" type="Label" parent="Sprite2D"]
+offset_left = 77.9458
+offset_top = 252.5
+offset_right = 117.946
+offset_bottom = 292.5
+scale = Vector2(3, 3)
+text = "i
+"
+label_settings = SubResource("LabelSettings_5leyj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_ixn8g")
+shape = SubResource("CircleShape2D_wvpkm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-0.356817, -0.501428)
@@ -53,7 +184,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TapCollider"]
-shape = SubResource("RectangleShape2D_kpwyc")
+position = Vector2(2.67983e-05, 6)
+shape = SubResource("CircleShape2D_i5rby")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="DragTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -63,45 +196,17 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = -26.0
-offset_top = -38.1003
-offset_right = 224.0
-offset_bottom = 278.9
-scale = Vector2(0.2, 0.2)
-text = "ab"
-label_settings = SubResource("LabelSettings_6pa1j")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Polarization" type="Label" parent="."]
-offset_left = -6.89969
-offset_top = -55.0
-offset_right = 243.1
-offset_bottom = 262.0
-scale = Vector2(0.2, 0.2)
-text = "+"
-label_settings = SubResource("LabelSettings_6pa1j")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Ingredient" type="Label" parent="."]
-visible = false
-offset_left = -44.0
-offset_top = -4.0
-offset_right = 656.0
-offset_bottom = 446.0
-scale = Vector2(0.120001, 0.120001)
-text = "iron"
-label_settings = SubResource("LabelSettings_6pa1j")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ReceiveTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b4hwp")
+}
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="area_entered" from="TapCollider" to="." method="_on_tap_collider_area_entered"]
 [connection signal="timeout" from="DragTimer" to="." method="_on_drag_timer_timeout"]
 [connection signal="timeout" from="TapTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ReceiveTimer" to="." method="_on_receive_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

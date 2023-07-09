@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://twt36rn68jbs"]
+[gd_scene load_steps=8 format=3 uid="uid://twt36rn68jbs"]
 
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="1_h2cwl"]
 [ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="1_ndi4p"]
+[ext_resource type="AudioStream" uid="uid://d068ng43pnio3" path="res://assets/sounds/temp blood.wav" id="3_jx2q2"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_u85xa"]
 b = Vector2(0, 29)
+
+[sub_resource type="Animation" id="Animation_hpttp"]
+resource_name = "POUR"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bdnnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t2uu"]
+_data = {
+"POUR": SubResource("Animation_hpttp"),
+"RESET": SubResource("Animation_bdnnj")
+}
 
 [node name="Tap" type="Node2D"]
 script = ExtResource("1_ndi4p")
@@ -23,3 +61,14 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("SegmentShape2D_u85xa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3t2uu")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jx2q2")
+volume_db = 4.379
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

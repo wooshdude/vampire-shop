@@ -8,6 +8,15 @@ func _on_body_entered(body):
 			print(order["order"])
 			print(body.order.recipe)
 			if body.order.check_order(order["order"]):
-				print('correct!')
-				GlobalOrders.orders.pop_at(order["order_num"])
-				body.queue_free()
+				if not order['vampire']:
+					print('correct!')
+					Score.money += 10
+				else:
+					print('happy vampire')
+					Score.Citation()
+				GlobalOrders.emit_signal("order_finished")
+				GlobalOrders.emit_signal("order_complete", GlobalOrders.get_order_index(order))
+				body.anim.play("DELETE")
+				
+				if order['emergency']:
+					GlobalOrders.emergency = false

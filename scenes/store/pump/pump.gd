@@ -5,3 +5,10 @@ extends Node2D
 
 
 var in_use = false
+
+
+func _process(delta):
+	if in_use:
+		$AnimationPlayer.play("PUMP")
+	else:
+		$AnimationPlayer.stop()

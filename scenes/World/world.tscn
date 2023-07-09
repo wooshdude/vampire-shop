@@ -1,24 +1,73 @@
-[gd_scene load_steps=13 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=30 format=3 uid="uid://d01k0m04yhs33"]
 
+[ext_resource type="Script" path="res://scenes/World/world.gd" id="1_30n1g"]
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
-[ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
-[ext_resource type="PackedScene" uid="uid://b3dc17l4oy8b7" path="res://scenes/blood_bag/blood_bag.tscn" id="3_ylytv"]
+[ext_resource type="Texture2D" uid="uid://dk3tcdj1u7jfe" path="res://assets/art/countertop.png" id="2_xwix2"]
+[ext_resource type="Texture2D" uid="uid://dacj61yife4p4" path="res://assets/art/background.png" id="3_kvpls"]
 [ext_resource type="PackedScene" uid="uid://twt36rn68jbs" path="res://scenes/store/tap/tap.tscn" id="4_htuk3"]
+[ext_resource type="Texture2D" uid="uid://ux41n7umqxid" path="res://assets/art/tap_back.png" id="4_mgf4e"]
+[ext_resource type="Texture2D" uid="uid://d1v2p8eo0l0r7" path="res://assets/art/a_pump.png" id="4_sk40h"]
+[ext_resource type="Texture2D" uid="uid://d0oa6ttf00ndu" path="res://assets/art/vamps_poster.png" id="5_g2u35"]
+[ext_resource type="Texture2D" uid="uid://c4gxg5no3lhnq" path="res://assets/art/b_pump.png" id="5_mdbn5"]
 [ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
+[ext_resource type="PackedScene" uid="uid://bpoihm8yl1v5a" path="res://scenes/blood_bag/biohazard_bin.tscn" id="6_7c3pf"]
+[ext_resource type="Texture2D" uid="uid://cyavyq7dhyfle" path="res://assets/art/o_pump.png" id="6_xsfsk"]
 [ext_resource type="PackedScene" uid="uid://bfefrpregy1gt" path="res://scenes/World/pause.tscn" id="7_ifwix"]
 [ext_resource type="PackedScene" uid="uid://d15m7o1g7v5yg" path="res://scenes/store/tap/polarizer.tscn" id="8_iwqy5"]
 [ext_resource type="PackedScene" uid="uid://27dd7my357oy" path="res://scenes/blood_bag/blood_box.tscn" id="9_f8q2s"]
+[ext_resource type="Texture2D" uid="uid://bhty1fwtwi8t8" path="res://assets/art/iron_shaker.png" id="10_14b5d"]
 [ext_resource type="PackedScene" uid="uid://byw7j4lv5a4tg" path="res://scenes/store/tap/shaker.tscn" id="10_synqr"]
 [ext_resource type="PackedScene" uid="uid://cbolvgjoi560k" path="res://scenes/customer/customer_manager.tscn" id="11_arlto"]
+[ext_resource type="Texture2D" uid="uid://cn5xfgqqn12p0" path="res://assets/art/calcium_shaker.png" id="11_nr7dv"]
 [ext_resource type="PackedScene" uid="uid://buwyd6t2gpn02" path="res://scenes/blood_bag/blood_deposit.tscn" id="12_le0qi"]
+[ext_resource type="Shader" path="res://scenes/World/blur.gdshader" id="12_y25yu"]
+[ext_resource type="Texture2D" uid="uid://bfu0t62s6xq86" path="res://assets/art/stay_o+.png" id="21_tosql"]
+[ext_resource type="AudioStream" uid="uid://bsj58hagel86c" path="res://assets/music/Lofi Beats to Chill and Drink Blood to_2b.wav" id="23_mohvv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqeem"]
+shader = ExtResource("12_y25yu")
+shader_parameter/strength = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
-size = Vector2(2021, 13)
+size = Vector2(2021, 17.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qc86"]
+size = Vector2(2044, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jept"]
+size = Vector2(35, 1644)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gyl2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqiok"]
 
 [node name="World" type="Node2D"]
 process_mode = 1
+script = ExtResource("1_30n1g")
 metadata/_edit_vertical_guides_ = [400.0, -200.0]
 metadata/_edit_horizontal_guides_ = [-298.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = 587.0
+offset_top = -336.0
+offset_right = 1039.0
+offset_bottom = 332.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -1036.0
+offset_top = -374.0
+offset_right = -584.0
+offset_bottom = 294.0
+mouse_filter = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_sqeem")
+texture = ExtResource("3_kvpls")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -1000
@@ -27,40 +76,64 @@ editor_draw_limits = true
 script = ExtResource("1_y506n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(15, 369)
-scale = Vector2(15.8906, 1)
-texture = ExtResource("2_le6bg")
+position = Vector2(0, 1)
+texture = ExtResource("2_xwix2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(22, 312)
-shape = SubResource("RectangleShape2D_twu1v")
-one_way_collision = true
+collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-4.5, 45.5)
+position = Vector2(-2, 26.25)
 shape = SubResource("RectangleShape2D_twu1v")
 one_way_collision = true
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(7, 44)
-scale = Vector2(15.6641, 0.132813)
-texture = ExtResource("2_le6bg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 271)
+shape = SubResource("RectangleShape2D_3qc86")
 
-[node name="blood_bag" parent="." instance=ExtResource("3_ylytv")]
-position = Vector2(-7, 151)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1017, -494)
+shape = SubResource("RectangleShape2D_5jept")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1016, -494)
+shape = SubResource("RectangleShape2D_5jept")
+
+[node name="TapBack" type="Sprite2D" parent="."]
+position = Vector2(-153, -5)
+texture = ExtResource("4_mgf4e")
 
 [node name="Tap" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-329, -178)
+
+[node name="Sprite2D" parent="Tap" index="0"]
+position = Vector2(0, -10)
+scale = Vector2(0.205, 0.205)
+texture = ExtResource("4_sk40h")
+region_enabled = true
+region_rect = Rect2(2402.56, 90.8749, 241.218, 946.716)
 
 [node name="Tap2" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-417, -177)
 blood_type = 1
 
+[node name="Sprite2D" parent="Tap2" index="0"]
+position = Vector2(0, -8)
+scale = Vector2(0.204167, 0.204167)
+texture = ExtResource("5_mdbn5")
+region_enabled = true
+region_rect = Rect2(537.819, 158.874, 304.428, 960.36)
+
 [node name="Tap3" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-504, -178)
 blood_type = 2
+
+[node name="Sprite2D" parent="Tap3" index="0"]
+position = Vector2(-0.999878, -8.99994)
+scale = Vector2(0.197843, 0.197843)
+texture = ExtResource("6_xsfsk")
+region_enabled = true
+region_rect = Rect2(1047.25, 130.529, 266.767, 963.499)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -73,23 +146,84 @@ offset_right = 1152.0
 offset_bottom = 654.0
 
 [node name="Polarizer" parent="." instance=ExtResource("8_iwqy5")]
-position = Vector2(507, 168)
+position = Vector2(361, 186)
+
+[node name="Polarizer2" parent="." instance=ExtResource("8_iwqy5")]
+position = Vector2(-621, 190)
+
+[node name="biohazard_bin" parent="." instance=ExtResource("6_7c3pf")]
+position = Vector2(809, 189)
 
 [node name="BloodBox" parent="." instance=ExtResource("9_f8q2s")]
-position = Vector2(904, 214)
+position = Vector2(648, 158)
 
 [node name="Shaker" parent="." instance=ExtResource("10_synqr")]
-position = Vector2(-505, 195)
+position = Vector2(-352, 186)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="Shaker" index="0"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("10_14b5d")
 
 [node name="Shaker2" parent="." instance=ExtResource("10_synqr")]
-position = Vector2(-435, 194)
+position = Vector2(-284, 187)
 ingredient = 1
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="Shaker2" index="0"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_nr7dv")
 
 [node name="CustomerManager" parent="." instance=ExtResource("11_arlto")]
+z_index = -2
 position = Vector2(1196, -128)
 
 [node name="BloodDeposit" parent="." instance=ExtResource("12_le0qi")]
-position = Vector2(760, 32)
+position = Vector2(760, 16)
+
+[node name="CollisionShape2D" parent="BloodDeposit" index="0"]
+position = Vector2(0, -4)
+
+[node name="ColorRect" parent="BloodDeposit" index="1"]
+offset_top = -1.0
+offset_bottom = 19.0
+color = Color(0.752941, 0.329412, 0.364706, 0.670588)
+
+[node name="Tray" parent="BloodDeposit" index="2"]
+position = Vector2(4, -21)
+scale = Vector2(0.325002, 0.205)
+
+[node name="VampsPoster" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2gyl2")
+position = Vector2(-836, 125)
+scale = Vector2(0.0541, 0.0541)
+texture = ExtResource("5_g2u35")
+
+[node name="StayO+" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_uqiok")
+position = Vector2(927, 122.636)
+scale = Vector2(0.241025, 0.241025)
+texture = ExtResource("21_tosql")
 
 [node name="pump" parent="." instance=ExtResource("5_yenkt")]
-position = Vector2(-807, 94)
+position = Vector2(-820, -67)
+
+[node name="pump2" parent="." instance=ExtResource("5_yenkt")]
+position = Vector2(-684, -70)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_mohvv")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="Tap"]
+[editable path="Tap2"]
+[editable path="Tap3"]
+[editable path="Shaker"]
+[editable path="Shaker2"]
+[editable path="BloodDeposit"]

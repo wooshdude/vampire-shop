@@ -16,7 +16,8 @@ class_name Order
 	"vampire": false,	# is customer vampire
 	"difficulty": 0,	# higher difficulty is shorter time
 	"order_num": 0,
-	"order": {}
+	"order": {},
+	"emergency": false
 }
 
 

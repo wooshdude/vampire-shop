@@ -1,0 +1,226 @@
+[gd_scene load_steps=13 format=3 uid="uid://b03wog6qu0sru"]
+
+[ext_resource type="Script" path="res://scenes/splash.gd" id="1_1fc4t"]
+[ext_resource type="Texture2D" uid="uid://dm44vcxluvtvr" path="res://assets/art/heart_logo_chromatic_abberation.png" id="1_grti8"]
+[ext_resource type="Texture2D" uid="uid://bpld3wgr6yx1j" path="res://assets/art/whole_heart_logo_chromatic_abberation.png" id="2_fwdg4"]
+[ext_resource type="FontFile" uid="uid://c51fwr61whyld" path="res://assets/fonts/Milky Mania.ttf" id="3_bs1vt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gfhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_grti8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fwdg4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_re4mh"]
+resource_name = "SHATTER"
+length = 5.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartLogoChromaticAbberation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.63),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeartLogoChromaticAbberation:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.99, 1.03, 1.07, 1.1, 1.16, 1.21, 1.24, 1.29, 1.34, 1.4, 1.45, 1.49, 1.57, 1.61, 1.66, 1.73, 1.84, 1.93, 2.12, 2.41, 3.67, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(575.04, 329), Vector2(584.58, 329), Vector2(581.22, 329), Vector2(573.28, 329), Vector2(584.58, 329), Vector2(581.015, 329), Vector2(582.66, 329), Vector2(581.68, 329), Vector2(586.18, 329), Vector2(576.305, 329), Vector2(615.955, 329), Vector2(544.55, 329), Vector2(631.665, 329), Vector2(493.41, 329), Vector2(557.415, 329), Vector2(543.485, 329), Vector2(580.12, 329), Vector2(542.465, 329), Vector2(580.475, 329), Vector2(563.345, 329), Vector2(565.225, 329), Vector2(441.765, 329)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.63),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.38, 4.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(418.275, 283), Vector2(547.505, 283)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.42, 4.18),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cgpwq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartLogoChromaticAbberation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeartLogoChromaticAbberation:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(575.04, 329)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(526, 283)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nacno"]
+_data = {
+"RESET": SubResource("Animation_cgpwq"),
+"SHATTER": SubResource("Animation_re4mh")
+}
+
+[sub_resource type="Gradient" id="Gradient_kykj0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q1kxk"]
+gradient = SubResource("Gradient_kykj0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tye8f"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 500, 0)
+initial_velocity_min = 105.04
+initial_velocity_max = 320.93
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 40.285
+damping_max = 40.285
+angle_min = 45.0
+angle_max = 45.0
+scale_min = 8.45
+scale_max = 12.15
+color_ramp = SubResource("GradientTexture1D_q1kxk")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mhkan"]
+font = ExtResource("3_bs1vt")
+font_size = 86
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1fc4t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0.121094, 0.0898438, 0.234375, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0.121094, 0.0898438, 0.234375, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0.121094, 0.0898438, 0.234375, 1)
+
+[node name="HeartLogoChromaticAbberation" type="AnimatedSprite2D" parent="."]
+position = Vector2(575.04, 329)
+scale = Vector2(0.644, 0.644)
+sprite_frames = SubResource("SpriteFrames_7gfhd")
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nacno")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(575, 330)
+process_material = SubResource("ParticleProcessMaterial_tye8f")
+one_shot = true
+explosiveness = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 526.0
+offset_top = 283.0
+offset_right = 850.996
+offset_bottom = 376.0
+text = "thirdoul"
+label_settings = SubResource("LabelSettings_mhkan")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
