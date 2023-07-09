@@ -68,7 +68,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			selected = true
 			get_node("TapCollider/CollisionShape2D").disabled = true
 			
-			print('grab')
+			#print('grab')
 			state = DRAG
 			
 			receive_timer.stop()
@@ -86,6 +86,11 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			
 			apply_central_impulse(direction * clamp(distance,0,30) * 35)
 
+func _on_tap_collider_area_exited(area):
+	if not tap == null:
+		tap.get_parent().in_use = false
+		tap = null
+
 
 func _on_tap_collider_area_entered(area):
 	if area.is_in_group("BloodBag"): return
@@ -93,7 +98,7 @@ func _on_tap_collider_area_entered(area):
 	print(tap.get_parent().in_use)
 	if tap.get_parent().in_use == false:
 		if area.is_in_group("BloodTap"):
-			print('colliding')
+			#print('colliding')
 			match area.get_parent().ingredient:
 				0:
 					receiving_blood = "a"
@@ -155,3 +160,13 @@ func _on_receive_timer_timeout():
 	print(order.recipe)
 	state = DRAG
 	selected = false
+
+
+func _on_area_2d_2_area_entered(area):
+	#print('collision')
+	pass
+
+
+func _on_area_2d_2_body_entered(body):
+	#$AudioStreamPlayer.play()
+	pass

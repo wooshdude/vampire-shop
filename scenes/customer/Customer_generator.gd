@@ -1,12 +1,12 @@
 extends Node2D
 
 #all generated orders are stored in these arrays so that they can be checked easily
-var orderName = [] 
-var orderBloodType = []
-var preferencesList = [] #description on patient sheet
-var orderDifficulty = [] #higher difficulty, shorter time
-var orderVampire = [] #boolean if customer is vampire
-var orderNum = 0 
+#var orderName = [] 
+#var orderBloodType = []
+#var preferencesList = [] #description on patient sheet
+#var orderDifficulty = [] #higher difficulty, shorter time
+#var orderVampire = [] #boolean if customer is vampire
+#var orderNum = 0 
 var bloodType = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 var names = ["Jessie", "Avery", "Alex", "John", "Rowan", "Morgan", "Casey"]
 var foodPreferences = ["Likes bacon", "Likes salads", "Likes coffee", "Dislikes waiting", "Dislikes cats"]
@@ -21,6 +21,9 @@ var hair: Sprite2D
 var mouth: Sprite2D
 var nose: Sprite2D
 
+var new_order = Order.new()
+
+
 func _ready():
 	orderGen() #temp
 	body = get_node("Customer/Body")
@@ -30,25 +33,52 @@ func _ready():
 	nose = get_node("Customer/Nose")
 	spriteGen()
 
+
+enum {
+	ARRIVE,
+	LEAVE
+}
+var state = ARRIVE
+signal left(customer)
+
+func _process(delta):
+	match state:
+		ARRIVE:
+			self.position.x = lerp(self.position.x, -600.0, 3 * delta)
+		LEAVE:
+			self.position.x = lerp(self.position.x, 600.0, 3 * delta)
+			await get_tree().create_timer(3).timeout
+			emit_signal("left", self)
+			self.queue_free()
+
+
 func orderGen()-> void: #generates next customer whenever called
-	orderName.append(names.pick_random())
+	var orderName = names.pick_random()
 	vampire = randi_range(0,5)
-	orderDifficulty.append(randi_range(1, 2))
+	var orderDifficulty = randi_range(1, 2)
+	var orderNum = len(GlobalOrders.orders)
+	var orderVampire
+	var preferencesList = []
+	
 	if (orderNum>0 and (orderNum-1)%5==0): 
-		orderDifficulty[orderNum] = 3
-	orderBloodType.append(bloodType.pick_random())
+		orderDifficulty = 3
+
 	if(vampire==3):
-		orderVampire.append(true)
-		preferencesList.append(vampFoodPreferences.pick_random() + ". Favourite activity is " +  vampHobbyPreferences.pick_random())
+		orderVampire = true
+		preferencesList = [vampFoodPreferences.pick_random(), vampHobbyPreferences.pick_random()]
 	else:
-		orderVampire.append(false)
-		preferencesList.append(foodPreferences.pick_random() + ". Favourite activity is " + hobbyPreferences.pick_random())
+		orderVampire = false
+		preferencesList = [foodPreferences.pick_random(), hobbyPreferences.pick_random()]
 	#print(orderName[orderNum])
 	#print(orderBloodType[orderNum])
 	#print(preferencesList[orderNum])
 	#print(orderDifficulty[orderNum])
 	#print(orderVampire[orderNum])
-	self.orderNum+=1
+	
+	new_order.new_patient(orderName, preferencesList, [], orderVampire, orderDifficulty)
+	print(new_order.patient)
+	GlobalOrders.orders.append(new_order.patient)
+
 
 func spriteGen()->void:
 	var ranMouth = randi_range(0,3)

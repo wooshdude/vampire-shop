@@ -9,6 +9,16 @@ class_name Order
 	"ingredients": []  # Array of ingrendients
 }
 
+@export var patient = {
+	"name": "",			# name on patient file
+	"likes": [],		#   
+	"dislikes": [],		#
+	"vampire": false,	# is customer vampire
+	"difficulty": 0,	# higher difficulty is shorter time
+	"order_num": 0,
+	"order": {}
+}
+
 
 func new_order():
 	recipe['blood-type'].clear()
@@ -25,6 +35,18 @@ func new_order():
 		recipe['ingredients'].append(ingredients.pop_at(randi_range(0, len(ingredients)-1)))
 	
 	return recipe
+
+
+func new_patient(name: String, likes: Array, dislikes: Array, vampire: bool, difficulty: int):
+	patient["name"] = name
+	patient["likes"] = likes
+	patient["dislikes"] = dislikes
+	patient["vampire"] = vampire
+	patient["difficulty"] = difficulty
+	patient["order_num"] = len(GlobalOrders.orders)
+	patient['order'] = new_order()
+	
+	return patient
 
 
 func check_order(order: Dictionary):

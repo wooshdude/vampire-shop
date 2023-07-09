@@ -15,8 +15,7 @@ script = ExtResource("1_8ne6a")
 script = ExtResource("2_6knv5")
 
 [node name="Customer" type="Node2D" parent="."]
-position = Vector2(535, 266)
-scale = Vector2(0.440001, 0.440001)
+scale = Vector2(0.206197, 0.206197)
 metadata/_edit_group_ = true
 
 [node name="Body" type="Sprite2D" parent="Customer"]
