@@ -55,7 +55,7 @@ func check_order(order: Dictionary):
 	if recipe['blood-type']['type'] != order['blood-type']['type']: return false
 	if recipe['blood-type']['polarization'] != order['blood-type']['polarization']: return false
 	for item in order["ingredients"]:
-		if not recipe["ingredients"].has(item):
+		if not item in recipe["ingredients"]:
 			return false
 	if not len(recipe["ingredients"]) == len(order["ingredients"]): return false
 	

@@ -83,6 +83,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			timer.start()
 		else:
 			selected = false
+			get_node("TapCollider/CollisionShape2D").disabled = false
 			var mouse_position = get_global_mouse_position()
 
 			var distance = global_position.distance_to(mouse_position)
@@ -105,7 +106,7 @@ func _on_tap_collider_area_entered(area):
 
 		if area.is_in_group("BloodTap"):
 			#print('colliding')
-			match area.get_parent().ingredient:
+			match area.get_parent().blood_type:
 				0:
 					receiving_blood = "a"
 				1:
@@ -125,8 +126,13 @@ func _on_tap_collider_area_entered(area):
 					receiving_polarization = "-"
 				"-":
 					receiving_polarization = "+"
-		if area.is_in_group("Pump"):
-			receiving_ingredient = area.get_parent().blood_type
+		
+		if area.is_in_group("Shaker"):
+			match area.get_parent().ingredient:
+				0:
+					receiving_ingredient = "iron"
+				1:
+					receiving_ingredient = "calcium"
 
 		tap.get_parent().in_use = true
 		state = IDLE
@@ -153,8 +159,13 @@ func _on_receive_timer_timeout():
 			sprite.frame = 1
 		if tap.is_in_group("Polarizer"):
 			order.polarize(receiving_polarization)
+		if tap.is_in_group("Pump"):
+			order.add_ingredient("insulin")
+		if tap.is_in_group("Shaker"):
+			order.add_ingredient(receiving_ingredient)
 	state = DRAG
 	selected = false
+	print(order.recipe)
 
 
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d01k0m04yhs33"]
+[gd_scene load_steps=13 format=3 uid="uid://d01k0m04yhs33"]
 
 [ext_resource type="Script" path="res://scenes/World/Camera2D.gd" id="1_y506n"]
 [ext_resource type="Texture2D" uid="uid://dg38arsllj2ef" path="res://icon.svg" id="2_le6bg"]
 [ext_resource type="PackedScene" uid="uid://b3dc17l4oy8b7" path="res://scenes/blood_bag/blood_bag.tscn" id="3_ylytv"]
 [ext_resource type="PackedScene" uid="uid://twt36rn68jbs" path="res://scenes/store/tap/tap.tscn" id="4_htuk3"]
 [ext_resource type="PackedScene" uid="uid://uxw2u83fp72l" path="res://scenes/store/pump/pump.tscn" id="5_yenkt"]
-[ext_resource type="Script" path="res://scenes/store/tap/tap.gd" id="6_8jbly"]
 [ext_resource type="PackedScene" uid="uid://bfefrpregy1gt" path="res://scenes/World/pause.tscn" id="7_ifwix"]
 [ext_resource type="PackedScene" uid="uid://d15m7o1g7v5yg" path="res://scenes/store/tap/polarizer.tscn" id="8_iwqy5"]
 [ext_resource type="PackedScene" uid="uid://27dd7my357oy" path="res://scenes/blood_bag/blood_box.tscn" id="9_f8q2s"]
@@ -14,10 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://buwyd6t2gpn02" path="res://scenes/blood_bag/blood_deposit.tscn" id="12_le0qi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
-size = Vector2(1232, 84)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_riqsj"]
-b = Vector2(0, 25)
+size = Vector2(2021, 13)
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -31,19 +27,19 @@ editor_draw_limits = true
 script = ExtResource("1_y506n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(14, 353)
+position = Vector2(15, 369)
 scale = Vector2(15.8906, 1)
 texture = ExtResource("2_le6bg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(5, 292)
+position = Vector2(22, 312)
 shape = SubResource("RectangleShape2D_twu1v")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-2, 43)
+position = Vector2(-4.5, 45.5)
 shape = SubResource("RectangleShape2D_twu1v")
 one_way_collision = true
 
@@ -60,54 +56,11 @@ position = Vector2(-329, -178)
 
 [node name="Tap2" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-417, -177)
-ingredient = 1
+blood_type = 1
 
 [node name="Tap3" parent="." instance=ExtResource("4_htuk3")]
 position = Vector2(-504, -178)
-ingredient = 2
-
-[node name="Pump1" parent="." instance=ExtResource("5_yenkt")]
-position = Vector2(-772, 44)
-script = ExtResource("6_8jbly")
-blood_type = "iron"
-
-[node name="Button" type="Button" parent="Pump1"]
-offset_left = -18.0
-offset_top = 6.0
-offset_right = -10.0
-offset_bottom = 14.0
-scale = Vector2(5.16, 5.16)
-script = ExtResource("7_qdi16")
-
-[node name="Area2D" type="Area2D" parent="Pump1" groups=["Pump"]]
-position = Vector2(0, 215)
-scale = Vector2(29.8, 3.81735)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump1/Area2D"]
-shape = SubResource("SegmentShape2D_riqsj")
-
-[node name="Pump2" parent="." instance=ExtResource("5_yenkt")]
-position = Vector2(200, -60)
-script = ExtResource("6_8jbly")
-blood_type = "insulin"
-
-[node name="Button" type="Button" parent="Pump2"]
-offset_left = -18.0
-offset_top = 6.0
-offset_right = -10.0
-offset_bottom = 14.0
-scale = Vector2(5.16, 5.16)
-
-[node name="Area2D" type="Area2D" parent="Pump2" groups=["Pump"]]
-position = Vector2(-2, 217)
-scale = Vector2(29.8, 3.81735)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump2/Area2D"]
-shape = SubResource("SegmentShape2D_riqsj")
+blood_type = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -136,6 +89,7 @@ ingredient = 1
 position = Vector2(1196, -128)
 
 [node name="BloodDeposit" parent="." instance=ExtResource("12_le0qi")]
-position = Vector2(754, 28)
+position = Vector2(760, 32)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="pump" parent="." instance=ExtResource("5_yenkt")]
+position = Vector2(-807, 94)
