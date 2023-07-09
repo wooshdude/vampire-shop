@@ -9,6 +9,7 @@ func _ready():
 
 
 func _on_continue_pressed():
+	Score.day += 1
 	get_tree().change_scene_to_file("res://scenes/World/world.tscn")
 
 func _on_quit_pressed():
