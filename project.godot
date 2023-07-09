@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalOrders="*res://globals/global_orders.gd"
+<<<<<<<UpdatedupstreamGlobalOrders="*res://globals/global_orders.gd"
+Score="*res://globals/Score.gd"
 
 [display]
 
