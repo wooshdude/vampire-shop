@@ -14,7 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://buwyd6t2gpn02" path="res://scenes/blood_bag/blood_deposit.tscn" id="12_le0qi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1v"]
-size = Vector2(2008, 13)
+size = Vector2(1232, 84)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_riqsj"]
+b = Vector2(0, 25)
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -66,6 +69,45 @@ ingredient = 2
 [node name="Pump1" parent="." instance=ExtResource("5_yenkt")]
 position = Vector2(-772, 44)
 script = ExtResource("6_8jbly")
+blood_type = "iron"
+
+[node name="Button" type="Button" parent="Pump1"]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 14.0
+scale = Vector2(5.16, 5.16)
+script = ExtResource("7_qdi16")
+
+[node name="Area2D" type="Area2D" parent="Pump1" groups=["Pump"]]
+position = Vector2(0, 215)
+scale = Vector2(29.8, 3.81735)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump1/Area2D"]
+shape = SubResource("SegmentShape2D_riqsj")
+
+[node name="Pump2" parent="." instance=ExtResource("5_yenkt")]
+position = Vector2(200, -60)
+script = ExtResource("6_8jbly")
+blood_type = "insulin"
+
+[node name="Button" type="Button" parent="Pump2"]
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = 14.0
+scale = Vector2(5.16, 5.16)
+
+[node name="Area2D" type="Area2D" parent="Pump2" groups=["Pump"]]
+position = Vector2(-2, 217)
+scale = Vector2(29.8, 3.81735)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pump2/Area2D"]
+shape = SubResource("SegmentShape2D_riqsj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
